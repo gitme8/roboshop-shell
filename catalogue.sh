@@ -5,6 +5,7 @@ ID=$(id -u)
 TIMESTAMP=$(date +%F-%H-%M-%S)
 R="\e[31m"
 G="\e[32m"
+Y="\e[33m"
 N="\e[0m"
 
 MONGODB_HOST="mongodb.sai-ops.online"
@@ -52,7 +53,7 @@ fi
 
 VALIDATE $? "Adding Roboshop User"
 
-mkdir /app &>> $LOGFILE
+mkdir -p /app &>> $LOGFILE
 VALIDATE $? "Creating Application Directory"    
 
 curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip &>> $LOGFILE 
