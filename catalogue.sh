@@ -2,7 +2,7 @@
 #!/bin/bash
 
 ID=$(id -u)
-TIMESTAMP=$(date +%F-%H-%M-%S)
+
 R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
@@ -48,7 +48,7 @@ then
     useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>> $LOGFILE
     VALIDATE $? "Adding Roboshop User"
 else
-    echo "Roboshop User Already Exists $Y SKIPPING... $N"
+    echo -e "Roboshop User Already Exists $Y SKIPPING... $N"
 fi
 
 VALIDATE $? "Adding Roboshop User"
