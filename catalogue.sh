@@ -66,7 +66,7 @@ VALIDATE $? "Extracting Catalogue Application Content"
 npm install &>> $LOGFILE
 VALIDATE $? "Installing Nodejs Dependencies"
 
-cp /home/ec/roboshop-shell/catalogue.service /etc/systemd/system/catalogue.service &>> $LOGFILE
+cp /home/ec2-user/roboshop-shell/catalogue.service /etc/systemd/system/catalogue.service &>> $LOGFILE
 VALIDATE $? "Copying Catalogue Systemd Service File"
 
 systemctl daemon-reload &>> $LOGFILE
