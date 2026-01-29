@@ -57,7 +57,7 @@ VALIDATE $? "Extracting Catalogue Application Content"
 npm install &>> $LOGFILE
 VALIDATE $? "Installing Nodejs Dependencies"
 
-cp /home/centos/roboshop-shell/catalogue.service /etc/systemd/system/catalogue.service &>> $LOGFILE
+cp /home/ec/roboshop-shell/catalogue.service /etc/systemd/system/catalogue.service &>> $LOGFILE
 VALIDATE $? "Copying Catalogue Systemd Service File"
 
 systemctl daemon-reload &>> $LOGFILE
@@ -68,7 +68,7 @@ VALIDATE $? "Enabling Catalogue Service"
 systemctl start catalogue &>> $LOGFILE
 VALIDATE $? "Starting Catalogue Service"
 
-cp /home/centos/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo &>> $LOGFILE
+cp /home/ec2-user/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo &>> $LOGFILE
 VALIDATE $? "Copying Mongodb Repo File"
 dnf install mongodb-mongosh -y &>> $LOGFILE
 VALIDATE $? "Installing Mongodb Shell"
