@@ -41,7 +41,15 @@ VALIDATE $? "Enabling Nodejs 20 Module"
 dnf install nodejs -y &>> $LOGFILE
 VALIDATE $? "Installing Nodejs"
 
-useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>> $LOGFILE
+id roboshop
+if [ $? -ne 0 ]
+then
+    useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>> $LOGFILE
+    VALIDATE $? "Adding Roboshop User"
+else
+    echo "Roboshop User Already Exists $Y SKIPPING... $N"
+fi
+
 VALIDATE $? "Adding Roboshop User"
 
 mkdir /app &>> $LOGFILE
@@ -51,7 +59,7 @@ curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue
 VALIDATE $? "Downloading Catalogue Application Content"
 
 cd /app 
-unzip /tmp/catalogue.zip &>> $LOGFILE 
+unzip -o /tmp/catalogue.zip &>> $LOGFILE 
 VALIDATE $? "Extracting Catalogue Application Content" 
 
 npm install &>> $LOGFILE
