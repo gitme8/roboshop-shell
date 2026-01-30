@@ -51,7 +51,6 @@ else
     echo -e "Roboshop User Already Exists $Y SKIPPING... $N"
 fi
 
-VALIDATE $? "Adding Roboshop User"
 
 mkdir -p /app &>> $LOGFILE
 VALIDATE $? "Creating Application Directory"    
