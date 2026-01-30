@@ -41,7 +41,8 @@ VALIDATE $? "Enabling Nodejs 20 Module"
 dnf install nodejs -y &>> $LOGFILE
 VALIDATE $? "Installing Nodejs"
 
-id roboshop 
+
+id roboshop
 if [ $? -ne 0 ]
 then
     useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>> $LOGFILE
@@ -54,25 +55,23 @@ fi
 mkdir -p /app &>> $LOGFILE
 VALIDATE $? "Creating Application Directory"    
 
-curl -L -o /tmp/user.zip https://roboshop-artifacts.s3.amazonaws.com/user-v3.zip  &>> $LOGFILE 
-VALIDATE $? "Downloading User Application Content"
+curl -L -o /tmp/cart.zip https://roboshop-artifacts.s3.amazonaws.com/cart-v3.zip &>> $LOGFILE 
+VALIDATE $? "Downloading Cart Application Content"
 
 cd /app 
-unzip -o /tmp/user.zip &>> $LOGFILE 
-VALIDATE $? "Extracting User Application Content" 
+unzip -o /tmp/cart.zip &>> $LOGFILE 
+VALIDATE $? "Extracting Cart Application Content" 
 
 npm install &>> $LOGFILE
 VALIDATE $? "Installing Nodejs Dependencies"
 
-cp /home/ec2-user/roboshop-shell/user.service /etc/systemd/system/user.service &>> $LOGFILE
-VALIDATE $? "Copying user Systemd Service File"
+cp /home/ec2-user/roboshop-shell/cart.service /etc/systemd/system/cart.service &>> $LOGFILE
+VALIDATE $? "Copying Cart Systemd Service File"
 
 systemctl daemon-reload &>> $LOGFILE
 VALIDATE $? "Reloading Systemd"
 
-systemctl enable user &>> $LOGFILE
-VALIDATE $? "Enabling user Service"
-
-systemctl start user &>> $LOGFILE
-VALIDATE $? "Starting user Service"
-
+systemctl enable cart &>> $LOGFILE
+VALIDATE $? "Enabling Cart Service"
+systemctl start cart &>> $LOGFILE
+VALIDATE $? "Starting Cart Service"
