@@ -72,7 +72,7 @@ VALIDATE $? "Starting Shipping Service"
 dnf install mysql -y &>> $LOGFILE
 VALIDATE $? "Installing Mysql Client"
 
-mysql -h mysql.sai-ops.online -uroot -pRoboShop@1 < /app/schema/shipping.sql &>> $LOGFILE
+mysql -h mysql.sai-ops.online -uroot -pRoboShop@1 < /app/db/shipping.sql &>> $LOGFILE
 VALIDATE $? "Loading Shipping Schema to Mysql Database"
 
 mysql -h mysql.sai-ops.online -uroot -pRoboShop@1 < /app/db/app-user.sql &>> $LOGFILE
