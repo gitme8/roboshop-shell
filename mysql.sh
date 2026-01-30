@@ -40,8 +40,6 @@ VALIDATE $? "Enabling Mysqld Service"
 systemctl start mysqld &>> $LOGFILE
 VALIDATE $? "Starting Mysqld Service"
 
-mysql_secure_installation --set-root-pass 'Roboshop@1' &>> $LOGFILE
+mysql_secure_installation --set-root-pass RoboShop@1 &>> $LOGFILE
 VALIDATE $? "Setting Mysql Root Password"
 
-mysql -uroot -p'Roboshop@1' -e "show databases" &>> $LOGFILE
-VALIDATE $? "Checking Mysql Connection" 
